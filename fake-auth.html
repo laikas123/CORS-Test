@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<body>
+<pre id="out">Testing...</pre>
+
+<script>
+(async () => {
+  const out = document.getElementById("out");
+
+  const url =
+    "https://id.superhuman.com/tokens/v4/api/oauth2/authorize" +
+    "?response_type=code" +
+    "&client_id=super-funnel" +
+    "&redirect_uri=" + encodeURIComponent("https://superhuman.com/v1/mediator/callback") +
+    "&scope=" + encodeURIComponent("grammarly.capi.all") +
+    "&state=test-cors-state" +
+    "&code_challenge=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" +
+    "&code_challenge_method=S256" +
+    "&response_mode=query" +
+    "&prompt=none";
+
+  try {
+    const r = await fetch(url, {
+      method: "GET",
+      mode: "cors",
+      credentials: "include"
+    });
+
+    let text = "";
+    try {
+      text = await r.text();
+    } catch (e) {
+      text = "[body unreadable: " + e + "]";
+    }
+
+    out.textContent =
+      "FETCH RESOLVED\n\n" +
+      "status: " + r.status + "\n" +
+      "type: " + r.type + "\n" +
+      "redirected: " + r.redirected + "\n" +
+      "url: " + r.url + "\n" +
+      "location header: " + r.headers.get("location") + "\n\n" +
+      "body:\n" + text;
+  } catch (e) {
+    out.textContent =
+      "FETCH BLOCKED/FAILED\n\n" +
+      e.name + ": " + e.message;
+  }
+})();
+</script>
+</body>
+</html>
