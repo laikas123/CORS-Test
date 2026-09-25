@@ -1,25 +1,29 @@
 <!doctype html>
 <html>
 <body>
-<button id="go">Open NBA ID and redirect</button>
+  <iframe
+    id="nba"
+    src="https://id.nba.com/voting"
+    width="900"
+    height="600">
+  </iframe>
 
-<script>
-document.querySelector("#go").onclick = () => {
-  const w = window.open(
-    "https://id.nba.com/voting",
-    "nba_test_window"
-  );
+  <br>
 
-  setTimeout(() => {
-    w.postMessage(
-      {
-        identifier: "redirectRequest",
-        url: "https://example.com/"
-      },
-      "https://id.nba.com"
-    );
-  }, 3000);
-};
-</script>
+  <button id="test">Send benign redirectRequest</button>
+
+  <script>
+    document.querySelector("#test").onclick = () => {
+      const frame = document.querySelector("#nba");
+
+      frame.contentWindow.postMessage(
+        {
+          identifier: "redirectRequest",
+          url: "https://example.com/"
+        },
+        "https://id.nba.com"
+      );
+    };
+  </script>
 </body>
 </html>
